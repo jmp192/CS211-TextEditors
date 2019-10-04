@@ -20,7 +20,7 @@ using namespace std;
 
 #define ctrl(x)           ((x) & 0x1f)
 
-// void draw_centered(WINDOW* win, int max_y, int max_x, string text);
+ //void draw_centered(WINDOW* win, int max_y, int max_x, string text);
 
 int main(void)
 {
@@ -101,8 +101,7 @@ int main(void)
 	for (int i = 0; i < num_cols; i++)
 	{
 		//top row
-		start_color();
-		init_pair(1, COLOR_YELLOW, COLOR_YELLOW);
+		init_pair(1, COLOR_GREEN, COLOR_GREEN);
 
 		attron(COLOR_PAIR(1));
 		mvaddch(0, i, ACS_BLOCK);
@@ -115,7 +114,7 @@ int main(void)
 	// TEXT EDITOR NAME, VERSION, and FILE NAME
 	char txtName[20] = "My Micro 1";
 	char fileName[20] = "File: ";
-	init_pair(2, COLOR_BLACK, COLOR_WHITE);
+	init_pair(2, COLOR_YELLOW, COLOR_GREEN);
 
 	attron(COLOR_PAIR(2));
 	mvprintw(0, 5, txtName);
@@ -133,76 +132,68 @@ int main(void)
 
 	//GUI file text
 	attron(COLOR_PAIR(2));
-	mvprintw(29, 1, "^F: FILE	^E: EDIT	^V: VIEW	^H: HELP");
+	mvprintw(39, 1, "^F: FILE	^E: EDIT	^V: VIEW	^H: HELP");
 	attroff(COLOR_PAIR(2));
 
 		//INPUT CODE here
 
-		//creating a NEW WINDOW for input
-		//WINDOW* inputwin = newwin(3, 12, 5, 5);
+		////creating a NEW WINDOW for input
+		WINDOW* inputwin = newwin(3, 12, 5, 5);
 		//box(inputwin, 0, 0);
-		//refresh();
-		//wrefresh(inputwin);
+		refresh();
+		wrefresh(inputwin);
 
-		//keypad(inputwin, true);
+		keypad(inputwin, true);
 
-		//HOW TO CREATE NEW, etc
-		//int inchar = wgetch(main_window);
-		//	
-		//	//switch for input
-		//	switch (inchar)
-		//	{
-		//	case key_up: mvwprintw(main_window, 1, 1, "you pressed up!"), wrefresh(main_window);
-		//		break;
-		//	case key_down: mvwprintw(main_window, 1, 1, "you pressed down!"), wrefresh(main_window);
-		//		break;
-		//	case key_right: mvwprintw(main_window, 1, 1, "you pressed right!"), wrefresh(main_window);
-		//		break;
-		//	case key_left: mvwprintw(main_window, 1, 1, "you pressed left!"), wrefresh(main_window);
-		//		break;
-		//	};
-
-			/*for (int i = 0; i < num_cols; i++)
+		//INPUT VARIABLE
+		char inChar = wgetch(main_window);
+			
+		//switch for input
+			/*switch (inChar)
 			{
-				mvwprintw(main_window, 1, 1, "<Enter exit to exit>");
+			case KEY_UP: mvwprintw(main_window, 1, 1, "you pressed up!"), wrefresh(main_window);
+				break;
+			case KEY_DOWN: mvwprintw(main_window, 1, 1, "you pressed down!"), wrefresh(main_window);
+				break;
+			case KEY_RIGHT: mvwprintw(main_window, 1, 1, "you pressed right!"), wrefresh(main_window);
+				break;
+			case KEY_LEFT: mvwprintw(main_window, 1, 1, "you pressed left!"), wrefresh(main_window);
+				break;
+			};*/
 
-				getch();
+			mvwprintw(main_window, 1, 1, "<Enter x to exit, z for newline>");
+			bool keepGoing = true;
 
-				if (inChar == 'a' && inChar != 'e')
+			for (int i = 2; i < num_cols; i++)
+			{
+				for (int j = 2; j < num_cols; j++)
 				{
-					mvaddch( i + 2, 2, 'a');
-
+					inChar = wgetch(main_window);
 					getch();
+
+					if (inChar == 'x')
+					{
+						keepGoing = false;
+					}
+					else if (inChar == 'z')
+					{
+						j += 1;
+					}
+					else
+					{
+						mvaddch(i, j, inChar);
+					}
 				}
+
+				
 			}
 
-	getch();*/
-
-	//INPUT CODE HERE
-	//get user input
-	//pause for input
-
 	//int cbreak(void);
-
-	//int input = 0;
-
-	//while (input != toupper('q'))
-	//{
-	//	input = getch();
-
-	//	clear();	// wipe screen of previous contents
-	//	//mvprintw("You pressed key %c, code %d.", input, input);
-	//	mvprintw(input, input, "You pressed key %c, code %d.");
-	//	refresh();
-	//}
 
 	//char input = getch();
 	/*char userstr[100];
 	int getstr(char userstr);
 	mvprintw(2, 2, userstr);*/
-
-	//int input = getch();
-
 
 	//START NEW TEXT FILE
 
@@ -213,7 +204,6 @@ int main(void)
 
 	//use file here
 
-
 	//char   tryOne[90];
 	//fin >> tryOne;
 	//mvprintw(4, 4, tryOne);
@@ -223,21 +213,21 @@ int main(void)
 
 	//fin.close();
 
-
-	//OUTPUT FILE
-	//wofstream fout;
-	//ofstream fout;
-	//fout.open("myOutFile.txt");
-
-	//use output file
-
-	//fout.close();
-
-
 	/*
 	END CURSES MODE
 	*/
 	endwin();
+
+	//OUTPUT FILE
+	//wofstream fout;
+	ofstream fout;
+	fout.open("myOutFile.txt");
+
+	//use output file
+
+	fout << inChar;
+
+	fout.close();
 
 	return 0;
 }
