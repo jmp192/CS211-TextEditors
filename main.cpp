@@ -147,6 +147,8 @@ int main(void)
 
 		//INPUT VARIABLE
 		char inChar = wgetch(main_window);
+		int index = 2;
+		int jindex = 2;
 			
 		//switch for input
 			/*switch (inChar)
@@ -164,7 +166,7 @@ int main(void)
 			mvwprintw(main_window, 1, 1, "<Enter x to exit, z for newline>");
 			bool keepGoing = true;
 
-			for (int i = 2; i < num_cols; i++)
+			/*for (int i = 2; i < num_cols; i++)
 			{
 				for (int j = 2; j < num_cols; j++)
 				{
@@ -183,9 +185,32 @@ int main(void)
 					{
 						mvaddch(i, j, inChar);
 					}
-				}
+				}			
+			}*/
+			int i = 2;
+			int j = 2;
+			while (i < num_cols && keepGoing == true)
+			{
+				while (j < num_cols && keepGoing == true)
+				{
+					inChar = wgetch(main_window);
 
-				
+					if (inChar == 'x')	//this character goes into input file
+					{
+						keepGoing = false;
+					}
+					else if (inChar == 'z')
+					{
+						i += 1;
+						j = 1;
+					}
+					else
+					{
+						mvaddch(i, j, inChar);	//try adding these characters to a vector
+					}
+					j++;
+				}
+				i++;
 			}
 
 	//int cbreak(void);
@@ -225,7 +250,13 @@ int main(void)
 
 	//use output file
 
-	fout << inChar;
+	string myStr;
+
+	//cout << "enter a string";
+	//getline(cin, myStr);
+
+	fout << inChar;					//create a vector of characters, do a fout loop, to output every character in the vector
+	//fout << myStr;
 
 	fout.close();
 
