@@ -138,41 +138,42 @@ int main(void)
 		//INPUT CODE here
 
 		////creating a NEW WINDOW for input
-		WINDOW* inputwin = newwin(3, 12, 5, 5);
+		//WINDOW* inputwin = newwin(3, 12, 5, 5);
 		//box(inputwin, 0, 0);
-		refresh();
-		wrefresh(inputwin);
+		//refresh();
+		//wrefresh(inputwin);
 
-		keypad(inputwin, true);
+		//keypad(inputwin, true);
 
 		//INPUT VARIABLE
 		char inChar = wgetch(main_window);
-		int index = 2;
-		int jindex = 2;
+		vector<char> user_input{};
+		int i = 2;
+		int j = 2;
 			
 		//switch for input
-			/*switch (inChar)
+			switch (inChar)
 			{
-			case KEY_UP: mvwprintw(main_window, 1, 1, "you pressed up!"), wrefresh(main_window);
+			case KEY_UP: --j;
 				break;
-			case KEY_DOWN: mvwprintw(main_window, 1, 1, "you pressed down!"), wrefresh(main_window);
+			case KEY_DOWN: ++j;
 				break;
-			case KEY_RIGHT: mvwprintw(main_window, 1, 1, "you pressed right!"), wrefresh(main_window);
+			case KEY_RIGHT: --i;
 				break;
-			case KEY_LEFT: mvwprintw(main_window, 1, 1, "you pressed left!"), wrefresh(main_window);
+			case KEY_LEFT: ++i;
 				break;
-			};*/
+			case KEY_BACKSPACE: ;
+			};
 
 			mvwprintw(main_window, 1, 1, "<Enter x to exit, z for newline>");
 			bool keepGoing = true;
 
-			int i = 2;
-			int j = 2;
 			while (i < num_cols && keepGoing == true)
 			{
 				while (j < num_cols && keepGoing == true)
 				{
 					inChar = wgetch(main_window);
+					user_input.push_back(inChar);
 
 					if (inChar == 'x')	//this character goes into input file
 					{
@@ -229,13 +230,12 @@ int main(void)
 
 	//use output file
 
-	string myStr;
-
-	//cout << "enter a string";
-	//getline(cin, myStr);
-
-	fout << inChar;					//create a vector of characters, do a fout loop, to output every character in the vectorts
-	//fout << myStr;
+	for (int i = 0; i < user_input.size(); i++)
+	{
+		//fout << i;
+		fout << user_input[i];
+		//break;
+	}
 
 	fout.close();
 
