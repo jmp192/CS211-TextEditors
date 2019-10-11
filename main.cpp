@@ -166,27 +166,6 @@ int main(void)
 			mvwprintw(main_window, 1, 1, "<Enter x to exit, z for newline>");
 			bool keepGoing = true;
 
-			/*for (int i = 2; i < num_cols; i++)
-			{
-				for (int j = 2; j < num_cols; j++)
-				{
-					inChar = wgetch(main_window);
-					getch();
-
-					if (inChar == 'x')
-					{
-						keepGoing = false;
-					}
-					else if (inChar == 'z')
-					{
-						j += 1;
-					}
-					else
-					{
-						mvaddch(i, j, inChar);
-					}
-				}			
-			}*/
 			int i = 2;
 			int j = 2;
 			while (i < num_cols && keepGoing == true)
@@ -255,7 +234,7 @@ int main(void)
 	//cout << "enter a string";
 	//getline(cin, myStr);
 
-	fout << inChar;					//create a vector of characters, do a fout loop, to output every character in the vector
+	fout << inChar;					//create a vector of characters, do a fout loop, to output every character in the vectorts
 	//fout << myStr;
 
 	fout.close();
