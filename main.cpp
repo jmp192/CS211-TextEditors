@@ -138,32 +138,35 @@ int main(void)
 		//INPUT CODE here
 
 		////creating a NEW WINDOW for input
-		//WINDOW* inputwin = newwin(3, 12, 5, 5);
-		//box(inputwin, 0, 0);
-		//refresh();
-		//wrefresh(inputwin);
+		/*WINDOW* inputwin = newwin(3, 12, 5, 5);
+		box(inputwin, 0, 0);
+		refresh();
+		wrefresh(inputwin);*/
 
 		//keypad(inputwin, true);
 
 		//INPUT VARIABLE
-		char inChar = wgetch(main_window);
+		char inChar;
 		vector<char> user_input{};
 		int i = 2;
 		int j = 2;
 			
 		//switch for input
-			switch (inChar)
+			/*switch (inChar)
 			{
-			case KEY_UP: --j;
+			case KEY_UP: j--;
 				break;
-			case KEY_DOWN: ++j;
+			case KEY_DOWN: j++;
 				break;
-			case KEY_RIGHT: --i;
+			case KEY_RIGHT: i--;
 				break;
-			case KEY_LEFT: ++i;
+			case KEY_LEFT: i++;
 				break;
 			case KEY_BACKSPACE: ;
-			};
+				break;
+			case KEY_ENTER: ;
+				break;
+			};*/
 
 			mvwprintw(main_window, 1, 1, "<Enter x to exit, z for newline>");
 			bool keepGoing = true;
