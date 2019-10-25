@@ -3,6 +3,7 @@
 #include "curses.h"
 #include "panel.h"
 #include "curspriv.h"
+#include "Trie.h"
 #else
 //Linux / MacOS includes
 #include <curses.h>
@@ -138,10 +139,17 @@ int main(void)
 		//INPUT CODE here
 
 		////creating a NEW WINDOW for input
-		/*WINDOW* inputwin = newwin(3, 12, 5, 5);
+		char myChar = wgetch(main_window);
+		WINDOW* inputwin = newwin(3, 12, 5, 5);
 		box(inputwin, 0, 0);
 		refresh();
-		wrefresh(inputwin);*/
+		wrefresh(inputwin);
+
+		switch (myChar)
+		{
+		case KEY_UP: mvwprintw(inputwin, 1, 1, "<Enter x to exit, z for newline>");
+		}
+		
 
 		//keypad(inputwin, true);
 
@@ -195,6 +203,21 @@ int main(void)
 				}
 				i++;
 			}
+
+			//trie main code
+			//Trie dictionary{};
+
+			//string line = "";
+			//dictionary.addWord("abc");
+			//dictionary.addWord("aabc");
+			//dictionary.addWord("def");
+			//vector<string> result = dictionary.search("a");
+
+			////expected result:  "abc", "aabc"
+			//for (auto item : result)
+			//{
+			//	cout << item << endl;
+			//}
 
 	//int cbreak(void);
 
