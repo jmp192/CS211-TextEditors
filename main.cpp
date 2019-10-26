@@ -205,19 +205,19 @@ int main(void)
 			}
 
 			//trie main code
-			//Trie dictionary{};
+			Trie dictionary{};
 
-			//string line = "";
-			//dictionary.addWord("abc");
-			//dictionary.addWord("aabc");
-			//dictionary.addWord("def");
-			//vector<string> result = dictionary.search("a");
+			string line = "";
+			dictionary.addWord("abc");
+			dictionary.addWord("aabc");
+			dictionary.addWord("def");
+			vector<string> result = dictionary.search("a");
 
 			////expected result:  "abc", "aabc"
-			//for (auto item : result)
-			//{
-			//	cout << item << endl;
-			//}
+			for (auto item : result)
+			{
+				cout << item << endl;
+			}
 
 	//int cbreak(void);
 
@@ -261,6 +261,28 @@ int main(void)
 		//fout << i;
 		fout << user_input[i];
 		//break;
+	}
+
+	fout.close();
+
+	//READ IN TRIE INPUT FILE TO VECTOR
+	vector<char> trieInput{};
+	ofstream fin;
+	fin.open("myInFile.txt");
+
+	//use output file
+
+	for (int i = 0; i < trieInput.size(); i++)
+	{
+		fin >> trieInput[i];
+	}
+
+	fin.close();
+
+	fout.open("myOutFile.txt");
+	for (int i = 0; i < trieInput.size(); i++)
+	{
+		fout << trieInput[i];
 	}
 
 	fout.close();
