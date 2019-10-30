@@ -274,7 +274,7 @@ int main(void)
 
 	for (int i = 0; i < trieInput.size(); i++)
 	{
-		fin >> trieInput[i];
+		//fin >> trieInput[i];
 	}
 
 	fin.close();
