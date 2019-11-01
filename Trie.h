@@ -49,13 +49,13 @@ public:
 
 		for (auto character : word)
 		{
-			if (iter->hasChild(character))
+			for (auto child : iter->getChildren())
 			{
-				iter = iter->getChildren()[character];
-			}
-			else
-			{
-				return matches;
+				if (character == child.first)
+				{
+					iter = iter->getChildren()[character];
+					break;
+				}
 			}
 		}
 
@@ -64,17 +64,48 @@ public:
 			if (child.first != '$')
 			{
 				tempWord = tempWord + child.first;
-				search(tempWord);
+				searchHelper(matches, word + child.first);
 			}
 			else
 			{
 				matches.push_back(tempWord);
 			}
 		}
-
-
 		return matches;
 	}
+
+	void searchHelper(vector<string>& matches, const string& word)
+	{
+		TrieNode* iter = _root;
+		string tempWord = word;
+
+		for (auto character : word)
+		{
+			for (auto child : iter->getChildren())
+			{
+				if (character == child.first)
+				{
+					iter = iter->getChildren()[character];
+					break;
+				}
+			}
+		}
+
+		for (auto child : iter->getChildren())
+		{
+			if (child.first != '$')
+			{
+				tempWord = tempWord + child.first;
+				searchHelper(matches, word + child.first);
+			}
+			else
+			{
+				matches.push_back(tempWord);
+			}
+		}
+	}
+
+
 };
 
 #endif // !TRIE_H
