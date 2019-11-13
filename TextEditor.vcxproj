@@ -126,6 +126,7 @@
     <ClInclude Include="curses.h" />
     <ClInclude Include="curspriv.h" />
     <ClInclude Include="panel.h" />
+    <ClInclude Include="Prior.h" />
     <ClInclude Include="Trie.h" />
     <ClInclude Include="TrieNode.h" />
   </ItemGroup>
@@ -142,6 +143,7 @@
   <ItemGroup>
     <Text Include="myInFile.txt" />
     <Text Include="myOutFile.txt" />
+    <Text Include="priorInFile.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -3,6 +3,7 @@
 #include "panel.h"
 #include "curspriv.h"
 #include "Trie.h"
+#include "Prior.h"
 #include <string>
 #include <sstream>
 #include <cstdlib>
@@ -20,11 +21,11 @@ using namespace std;
 
 int main(void)
 {
-	Trie tree;
 
+	//TRIE TREE CODE
+	Trie tree;
 	ifstream fin;
 	fin.open("myInFile.txt");
-
 	string readThis;
 	if (fin.good())
 	{
@@ -39,8 +40,34 @@ int main(void)
 	vector<string> test = tree.search("type");
 	for (int i = 0; i < test.size(); i++)
 	{
-		cout << test[i] << endl;
+		cout << test[i] << endl << endl;
 	}
+
+	//PRIORITY QUEUE CODE
+	/*fin.open("priorInFile.txt");
+	string readThat;
+	if (fin.good())
+	{
+		while (getline(fin, readThat))
+		{
+
+		}
+	}*/
+
+	/*int		 index;
+	ifstream fin;
+	string wordArray[100];
+
+	fin.open("InFile.txt");
+
+	for (index = 0; index < 100; index++)
+	{
+		getline(fin, wordArray[index]);
+
+		fin.ignore(1000, '\n');
+	}*/
+
+	fin.close();
 
 	/*
 	WINDOWS
@@ -227,31 +254,6 @@ int main(void)
 				i++;
 			}
 
-	//int cbreak(void);
-
-	//char input = getch();
-	/*char userstr[100];
-	int getstr(char userstr);
-	mvprintw(2, 2, userstr);*/
-
-	//START NEW TEXT FILE
-
-	//wifstream fin;
-	//ifstream fin;
-	//fin.open("C:\Users\James Pelligra\2019-fall-cs211\projects\TextEditor\TextEditorProject1");
-	//fin.open("myInFile.txt");
-
-	//use file here
-
-	//char   tryOne[90];
-	//fin >> tryOne;
-	//mvprintw(4, 4, tryOne);
-	//wrefresh(main_window);
-
-	//try a nested statement to USE FILE
-
-	//fin.close();
-
 	/*
 	END CURSES MODE
 	*/
@@ -262,38 +264,70 @@ int main(void)
 	ofstream fout;
 	fout.open("myOutFile.txt");
 
-	//use output file
+	/*unordered_map<string, int> sentence;
+	string word = "";
+	string stringMax = "";
+	int intMax = 0;
 
 	for (int i = 0; i < user_input.size(); i++)
 	{
-		//fout << i;
+		if (user_input[i] == "")
+		{
+			return "";
+		}
+
+		for (auto x : user_input)
+		{
+			if (x == ' ')
+			{
+				if (sentence.count(word) > 0)
+				{
+					sentence[word]++;
+				}
+				else
+				{
+					sentence[word] = 1;
+				}
+				word = "";
+			}
+			else
+			{
+				word = word + x;
+			}
+		}
+	}
+	sentence[word]++;*/
+
+	//use output file
+	//CREATE BINARY FORMAT
+	for (int i = 0; i < user_input.size(); i++)
+	{
 		fout << user_input[i];
-		//break;
 	}
 
-	fout.close();
-
-	////READ IN TRIE INPUT FILE TO VECTOR
-	//vector<char> trieInput{};
-	//ofstream fin;
-	//fin.open("myInFile.txt");
-
-	////use output file
-
-	//for (int i = 0; i < trieInput.size(); i++)
-	//{
-	//	//fin >> trieInput[i];
-	//}
-
-	//fin.close();
-
-	//fout.open("myOutFile.txt");
-	//for (int i = 0; i < trieInput.size(); i++)
-	//{
-	//	fout << trieInput[i];
-	//}
+	/*unordered_map<string, int> sentence;
+	string word = "";
+	while (!fout.eof())
+	{
+		getline(fout, word, ' ');
+		sentence[word]++;
+	}*/
 
 	fout.close();
+
+	ifstream fins;
+	fins.open("priorInFile.txt");
+	unordered_map<string, int> sentence;
+	string word = "";
+
+	while (!fins.eof())
+	{
+
+		getline(fins, word, ' ');
+		sentence[word]++;
+	}
+
+	fins.close();
 
 	return 0;
 }
