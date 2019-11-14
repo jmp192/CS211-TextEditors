@@ -62,5 +62,8 @@
     <Text Include="priorInFile.txt">
       <Filter>Resource Files</Filter>
     </Text>
+    <Text Include="mySecOutFile.txt">
+      <Filter>Resource Files</Filter>
+    </Text>
   </ItemGroup>
 </Project>

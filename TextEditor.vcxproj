@@ -143,6 +143,7 @@
   <ItemGroup>
     <Text Include="myInFile.txt" />
     <Text Include="myOutFile.txt" />
+    <Text Include="mySecOutFile.txt" />
     <Text Include="priorInFile.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

@@ -12,6 +12,7 @@
 #include <fstream>
 #include <iomanip>
 #include <vector>
+#include <unordered_map>
 
 using namespace std;
 
@@ -315,19 +316,30 @@ int main(void)
 
 	fout.close();
 
-	ifstream fins;
-	fins.open("priorInFile.txt");
+	ifstream finTwo;
+	finTwo.open("priorInFile.txt");
 	unordered_map<string, int> sentence;
 	string word = "";
 
-	while (!fins.eof())
+	while (!finTwo.eof())
 	{
+		/*if (word != " ")
+		{
 
-		getline(fins, word, ' ');
+		}*/
+		getline(finTwo, word, ' ');
 		sentence[word]++;
 	}
 
-	fins.close();
+	finTwo.close();
+
+	ofstream foutSec;
+	foutSec.open("mySecOutFile.txt");
+
+	while (!foutSec.eof())
+	{
+		foutSec << sentence["green"] << endl;
+	}
 
 	return 0;
 }
