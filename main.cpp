@@ -13,12 +13,39 @@
 #include <iomanip>
 #include <vector>
 #include <unordered_map>
+#include <map>
+#include <queue>
 
 using namespace std;
 
 #define ctrl(x)           ((x) & 0x1f)
 
  //void draw_centered(WINDOW* win, int max_y, int max_x, string text);
+
+#include <iostream>
+#include <queue>
+#include <string>
+using namespace std;
+
+class MaxHeapPairComparer
+{
+public:
+	template<typename K, typename V>
+	bool operator()(const pair<K, V>& left, const pair <K, V>& right)
+	{
+		return left.second < right.second;
+	}
+};
+class MinHeapPairComparer
+{
+
+public:
+	template<typename K, typename V>
+	bool operator()(const pair<K, V>& left, const pair <K, V>& right)
+	{
+		return left.second > right.second;
+	}
+};
 
 int main(void)
 {
@@ -316,40 +343,98 @@ int main(void)
 
 	fout.close();
 
-	ifstream finTwo;
-	finTwo.open("priorInFile.txt");
+	//ifstream fin;
+	fin.open("priorInFile.txt");
 	unordered_map<string, int> sentence;
-	string word = "";
+	string word;
 
-	while (!finTwo.eof())
+	while (fin >> word)
 	{
-		/*if (word != " ")
+		++sentence[word];
+	}
+	for (auto result : sentence)
+	{
+		cout << result.first << ": " 
+			 << result.second << endl;
+	}
+	
+	//PRIORITY QUEUE
+	priority_queue<pair<string, int>, vector<pair<string, int>>, MaxHeapPairComparer> max_pq{};
+	//BUILDING MAX HEAP
+	for (auto y : sentence)
+	{
+		max_pq.push(make_pair(y.first, y.second));
+	}
+
+	cout << endl << endl;
+
+	int decVal;
+	int binaryArray[32];
+	//NOW, POP AND ASSIGN EACH WORD A UNQUE BINARY STRING VALUE
+	fout.open("mySecOutFile.txt");
+	while (max_pq.empty() == false)
+	{
+		int index = 0;
+		decVal = max_pq.top().second;
+		while (decVal > 0)
 		{
+			binaryArray[index] = decVal % 2;
+			decVal = decVal / 2;
+			index++;
+			//max_pq.top().second = decVal;
+		}
 
-		}*/
-		getline(finTwo, word, ' ');
-		sentence[word]++;
+		//cout << max_pq.top().first << ": " << max_pq.top().second << endl;
+		cout << max_pq.top().first << ": ";
+		fout << max_pq.top().first << ": ";
+
+		for (int j = index - 1; j >= 0; j--)
+		{
+			cout << binaryArray[j];
+			fout << binaryArray[j];
+		}
+		cout << endl;
+		fout << endl;
+		max_pq.pop();
 	}
+	fout.close();
+	cout << endl << endl;
 
-	finTwo.close();
-
-	ofstream foutSec;
-	foutSec.open("mySecOutFile.txt");
-
-	while (!foutSec.eof())
+	/*unordered_map<string, int> newSentence;
+	while (fin >> word)
 	{
-		foutSec << sentence["green"] << endl;
-	}
+		++newSentence[word];
+	}*/
+
+	//while (!finTwo.eof())
+	//{
+	//	if(word != " ")
+	//	{
+	//		getline(finTwo, word, ' ');
+	//	}
+	//	else if(word != "\n")
+	//	{
+	//		getline(finTwo, word, '\n');
+	//	}
+	//	/*if (word != word + " " || word != word + "\n")
+	//	{
+	//		sentence[word]++;
+	//	}*/
+	//	sentence[word]++;
+	//	//++sentence[word];
+	//}
+
+	//ofstream foutSec;
+	/*fout.open("mySecOutFile.txt");
+	for (auto row : sentence)
+	{
+		fout << row.first << ": " << row.second << endl;
+	}*/
+
+	/*while (!foutSec.eof())
+	{
+		foutSec << sentence["orange"] << endl;
+	}*/
 
 	return 0;
 }
-
-
-	//Centered Drawing Function Definition
-	/*void draw_centered(WINDOW* win, int max_y, int max_x, string text)
-	{
-		int length = text.length();
-		int left_margin = (max_x - length) / 2;
-		int top_margin = (max_y - 1) / 2;
-		mvwprintw(win, top_margin, left_margin, text.c_str());
-	}*/
