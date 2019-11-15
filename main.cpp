@@ -372,6 +372,8 @@ int main(void)
 	int binaryArray[32];
 	//NOW, POP AND ASSIGN EACH WORD A UNQUE BINARY STRING VALUE
 	fout.open("mySecOutFile.txt");
+	ofstream foutTwo;
+	foutTwo.open("BinMapOut.txt");
 	while (max_pq.empty() == false)
 	{
 		int index = 0;
@@ -386,18 +388,22 @@ int main(void)
 
 		//cout << max_pq.top().first << ": " << max_pq.top().second << endl;
 		cout << max_pq.top().first << ": ";
-		fout << max_pq.top().first << ": ";
+		foutTwo << max_pq.top().first << ": ";
 
 		for (int j = index - 1; j >= 0; j--)
 		{
 			cout << binaryArray[j];
 			fout << binaryArray[j];
+			foutTwo << binaryArray[j];
+
 		}
 		cout << endl;
-		fout << endl;
+		fout << " ";
+		foutTwo << endl;
 		max_pq.pop();
 	}
 	fout.close();
+	foutTwo.close();
 	cout << endl << endl;
 
 	/*unordered_map<string, int> newSentence;

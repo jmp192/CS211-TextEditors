@@ -141,6 +141,7 @@
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <Text Include="BinMapOut.txt" />
     <Text Include="myInFile.txt" />
     <Text Include="myOutFile.txt" />
     <Text Include="mySecOutFile.txt" />
