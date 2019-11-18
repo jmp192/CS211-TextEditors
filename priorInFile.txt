@@ -1,6 +1,7 @@
 orange orange orange
 green green
 yellow
-yellow blue red
+yellow blue
 red blue
 green
+purple purple purple purple

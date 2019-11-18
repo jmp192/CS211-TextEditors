@@ -1,5 +1,6 @@
+purple: 100
 orange: 11
 green: 11
 blue: 10
-red: 10
 yellow: 10
+red: 1

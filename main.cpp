@@ -15,17 +15,13 @@
 #include <unordered_map>
 #include <map>
 #include <queue>
-
 using namespace std;
 
 #define ctrl(x)           ((x) & 0x1f)
 
  //void draw_centered(WINDOW* win, int max_y, int max_x, string text);
 
-#include <iostream>
-#include <queue>
-#include <string>
-using namespace std;
+
 
 class MaxHeapPairComparer
 {
@@ -65,11 +61,11 @@ int main(void)
 	fin.close();
 	cout << endl;
 
-	vector<string> test = tree.search("type");
+	/*vector<string> test = tree.search("type");
 	for (int i = 0; i < test.size(); i++)
 	{
 		cout << test[i] << endl << endl;
-	}
+	}*/
 
 	//PRIORITY QUEUE CODE
 	/*fin.open("priorInFile.txt");
@@ -348,16 +344,17 @@ int main(void)
 	unordered_map<string, int> sentence;
 	string word;
 
+	//input WHILE there are words to input
 	while (fin >> word)
 	{
 		++sentence[word];
 	}
+	//OUTPUTS the string and int value associated
 	for (auto result : sentence)
 	{
 		cout << result.first << ": " 
 			 << result.second << endl;
 	}
-	
 	//PRIORITY QUEUE
 	priority_queue<pair<string, int>, vector<pair<string, int>>, MaxHeapPairComparer> max_pq{};
 	//BUILDING MAX HEAP
@@ -366,11 +363,17 @@ int main(void)
 		max_pq.push(make_pair(y.first, y.second));
 	}
 
+	/*while (max_pq.empty() == false)
+	{
+		cout << max_pq.top().first << ": " << max_pq.top().second << endl;
+		max_pq.pop();
+	}*/
+
 	cout << endl << endl;
 
 	int decVal;
 	int binaryArray[32];
-	//NOW, POP AND ASSIGN EACH WORD A UNQUE BINARY STRING VALUE
+	//NOW, POP AND ASSIGN EACH WORD A UNIQUE BINARY STRING VALUE
 	fout.open("mySecOutFile.txt");
 	ofstream foutTwo;
 	foutTwo.open("BinMapOut.txt");
@@ -395,7 +398,6 @@ int main(void)
 			cout << binaryArray[j];
 			fout << binaryArray[j];
 			foutTwo << binaryArray[j];
-
 		}
 		cout << endl;
 		fout << " ";
