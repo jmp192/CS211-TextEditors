@@ -19,7 +19,7 @@ using namespace std;
 
 #define ctrl(x)           ((x) & 0x1f)
 
- //void draw_centered(WINDOW* win, int max_y, int max_x, string text);
+//void draw_centered(WINDOW* win, int max_y, int max_x, string text);
 
 
 
@@ -203,80 +203,80 @@ int main(void)
 	mvprintw(39, 1, "^F: FILE	^E: EDIT	^V: VIEW	^H: HELP");
 	attroff(COLOR_PAIR(2));
 
-		//INPUT CODE here
+	//INPUT CODE here
 
-		//creating a NEW WINDOW for input
-		WINDOW* inputwin = newwin(10, 20, 5, 5);
-		box(inputwin, 0, 0);
-		mvwprintw(inputwin, 1, 1, "this is a box");
-		refresh();
-		wrefresh(inputwin);
+	//creating a NEW WINDOW for input
+	WINDOW* inputwin = newwin(10, 20, 5, 5);
+	box(inputwin, 0, 0);
+	mvwprintw(inputwin, 1, 1, "this is a box");
+	refresh();
+	wrefresh(inputwin);
 
-		/*vector<string> test = t.search("stati");
-		for (int i = 0; i < test.size(); i++)
+	/*vector<string> test = t.search("stati");
+	for (int i = 0; i < test.size(); i++)
+	{
+		cout << test[i] << endl;
+	}*/
+
+	//input test with switch and outputting
+	/*char myChar = wgetch(main_window);
+	switch (myChar)
+	{
+		case KEY_UP: mvwprintw(inputwin, 1, 1, "<Enter x to exit, z for newline>");
+	}*/
+
+	//keypad(inputwin, true);
+
+	//INPUT VARIABLE
+	char inChar;
+	vector<char> user_input{};
+	int i = 2;
+	int j = 2;
+
+	//switch for input
+		/*switch (inChar)
 		{
-			cout << test[i] << endl;
-		}*/
+		case KEY_UP: j--;
+			break;
+		case KEY_DOWN: j++;
+			break;
+		case KEY_RIGHT: i--;
+			break;
+		case KEY_LEFT: i++;
+			break;
+		case KEY_BACKSPACE: ;
+			break;
+		case KEY_ENTER: ;
+			break;
+		};*/
 
-		//input test with switch and outputting
-		/*char myChar = wgetch(main_window);
-		switch (myChar)
+	mvwprintw(main_window, 1, 1, "<Enter x to exit, z for newline>");
+	bool keepGoing = true;
+
+	while (i < num_cols && keepGoing == true)
+	{
+		while (j < num_cols && keepGoing == true)
 		{
-			case KEY_UP: mvwprintw(inputwin, 1, 1, "<Enter x to exit, z for newline>");
-		}*/
-		
-		//keypad(inputwin, true);
+			inChar = wgetch(main_window);
+			user_input.push_back(inChar);
 
-		//INPUT VARIABLE
-		char inChar;
-		vector<char> user_input{};
-		int i = 2;
-		int j = 2;
-			
-		//switch for input
-			/*switch (inChar)
+			if (inChar == 'x')	//this character goes into input file
 			{
-			case KEY_UP: j--;
-				break;
-			case KEY_DOWN: j++;
-				break;
-			case KEY_RIGHT: i--;
-				break;
-			case KEY_LEFT: i++;
-				break;
-			case KEY_BACKSPACE: ;
-				break;
-			case KEY_ENTER: ;
-				break;
-			};*/
-
-			mvwprintw(main_window, 1, 1, "<Enter x to exit, z for newline>");
-			bool keepGoing = true;
-
-			while (i < num_cols && keepGoing == true)
-			{
-				while (j < num_cols && keepGoing == true)
-				{
-					inChar = wgetch(main_window);
-					user_input.push_back(inChar);
-
-					if (inChar == 'x')	//this character goes into input file
-					{
-						keepGoing = false;
-					}
-					else if (inChar == 'z')
-					{
-						i += 1;
-						j = 1;
-					}
-					else
-					{
-						mvaddch(i, j, inChar);	//try adding these characters to a vector
-					}
-					j++;
-				}
-				i++;
+				keepGoing = false;
 			}
+			else if (inChar == 'z')
+			{
+				i += 1;
+				j = 1;
+			}
+			else
+			{
+				mvaddch(i, j, inChar);	//try adding these characters to a vector
+			}
+			j++;
+		}
+		i++;
+	}
 
 	/*
 	END CURSES MODE
@@ -352,8 +352,8 @@ int main(void)
 	//OUTPUTS the string and int value associated
 	for (auto result : sentence)
 	{
-		cout << result.first << ": " 
-			 << result.second << endl;
+		cout << result.first << ": "
+			<< result.second << endl;
 	}
 	//PRIORITY QUEUE
 	priority_queue<pair<string, int>, vector<pair<string, int>>, MaxHeapPairComparer> max_pq{};
@@ -373,6 +373,7 @@ int main(void)
 
 	int decVal;
 	int binaryArray[32];
+
 	//NOW, POP AND ASSIGN EACH WORD A UNIQUE BINARY STRING VALUE
 	fout.open("mySecOutFile.txt");
 	ofstream foutTwo;
@@ -408,36 +409,74 @@ int main(void)
 	foutTwo.close();
 	cout << endl << endl;
 
-	/*unordered_map<string, int> newSentence;
-	while (fin >> word)
-	{
-		++newSentence[word];
-	}*/
+	/*
+	SORTING CODE STARTS HERE
+	*/
 
-	//while (!finTwo.eof())
-	//{
-	//	if(word != " ")
-	//	{
-	//		getline(finTwo, word, ' ');
-	//	}
-	//	else if(word != "\n")
-	//	{
-	//		getline(finTwo, word, '\n');
-	//	}
-	//	/*if (word != word + " " || word != word + "\n")
-	//	{
-	//		sentence[word]++;
-	//	}*/
-	//	sentence[word]++;
-	//	//++sentence[word];
-	//}
-
-	//ofstream foutSec;
-	/*fout.open("mySecOutFile.txt");
-	for (auto row : sentence)
+	//BUBBLE SORT
+	for (int i = 0; i < user_input.size(); i++)
 	{
-		fout << row.first << ": " << row.second << endl;
-	}*/
+		bool has_swapped = false;
+		for (int j = 1; j < user_input.size() - i; j++)
+		{
+			if (user_input[j - 1] > user_input[j])
+			{
+				char temp = user_input[j - 1];
+				user_input[j - 1] = user_input[j];
+				user_input[j] = temp;
+				has_swapped = true;
+			}
+		}
+		if (has_swapped == false)
+		{
+			//data is sortd, break out of loop
+			break;
+		}
+	}
+
+	//INSERTION SORT
+	for (int i = 1; i < user_input.size(); i++)
+	{
+		for (int j = i; j > 0; j--)
+		{
+			if (user_input[j] < user_input[j - 1])
+			{
+				char temp = user_input[j];
+				user_input[j] = user_input[j - 1];
+				user_input[j - 1] = temp;
+			}
+			else
+			{
+				//in correct position relative to
+				//sorted set of list
+
+				//This extra check ensures O(N) on sorted
+				//data
+				break;
+			}
+		}
+	}
+
+	//SELECTION SORT
+	for (int i = 0; i < user_input.size(); i++)
+	{
+		int smallest_index = i;
+		for (int j = i + 1; j < user_input.size(); j++)
+		{
+			if (user_input[j] < user_input[smallest_index])
+			{
+				smallest_index = j;
+			}
+		}
+
+		char temp = user_input[i];
+		user_input[i] = user_input[smallest_index];
+		user_input[smallest_index] = temp;
+	}
+
+	//QUICK SORT
+
+
 
 	/*while (!foutSec.eof())
 	{
