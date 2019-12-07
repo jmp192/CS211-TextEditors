@@ -19,9 +19,6 @@ using namespace std;
 
 #define ctrl(x)           ((x) & 0x1f)
 
-//void draw_centered(WINDOW* win, int max_y, int max_x, string text);
-
-
 
 class MaxHeapPairComparer
 {
@@ -45,7 +42,6 @@ public:
 
 int main(void)
 {
-
 	//TRIE TREE CODE
 	Trie tree;
 	ifstream fin;
@@ -60,38 +56,6 @@ int main(void)
 	}
 	fin.close();
 	cout << endl;
-
-	/*vector<string> test = tree.search("type");
-	for (int i = 0; i < test.size(); i++)
-	{
-		cout << test[i] << endl << endl;
-	}*/
-
-	//PRIORITY QUEUE CODE
-	/*fin.open("priorInFile.txt");
-	string readThat;
-	if (fin.good())
-	{
-		while (getline(fin, readThat))
-		{
-
-		}
-	}*/
-
-	/*int		 index;
-	ifstream fin;
-	string wordArray[100];
-
-	fin.open("InFile.txt");
-
-	for (index = 0; index < 100; index++)
-	{
-		getline(fin, wordArray[index]);
-
-		fin.ignore(1000, '\n');
-	}*/
-
-	fin.close();
 
 	/*
 	WINDOWS
@@ -288,54 +252,12 @@ int main(void)
 	ofstream fout;
 	fout.open("myOutFile.txt");
 
-	/*unordered_map<string, int> sentence;
-	string word = "";
-	string stringMax = "";
-	int intMax = 0;
-
-	for (int i = 0; i < user_input.size(); i++)
-	{
-		if (user_input[i] == "")
-		{
-			return "";
-		}
-
-		for (auto x : user_input)
-		{
-			if (x == ' ')
-			{
-				if (sentence.count(word) > 0)
-				{
-					sentence[word]++;
-				}
-				else
-				{
-					sentence[word] = 1;
-				}
-				word = "";
-			}
-			else
-			{
-				word = word + x;
-			}
-		}
-	}
-	sentence[word]++;*/
-
 	//use output file
 	//CREATE BINARY FORMAT
 	for (int i = 0; i < user_input.size(); i++)
 	{
 		fout << user_input[i];
 	}
-
-	/*unordered_map<string, int> sentence;
-	string word = "";
-	while (!fout.eof())
-	{
-		getline(fout, word, ' ');
-		sentence[word]++;
-	}*/
 
 	fout.close();
 
@@ -362,12 +284,6 @@ int main(void)
 	{
 		max_pq.push(make_pair(y.first, y.second));
 	}
-
-	/*while (max_pq.empty() == false)
-	{
-		cout << max_pq.top().first << ": " << max_pq.top().second << endl;
-		max_pq.pop();
-	}*/
 
 	cout << endl << endl;
 
@@ -433,6 +349,13 @@ int main(void)
 			break;
 		}
 	}
+
+	fout.open("myOutFile.txt");
+	for (int i = 0; i < user_input.size(); i++)
+	{
+		fout << user_input[i];
+	}
+	fout.close();
 
 	//INSERTION SORT
 	for (int i = 1; i < user_input.size(); i++)
